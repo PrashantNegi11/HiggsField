@@ -25,8 +25,8 @@ model Avatar{
   id          String          @id           @default(uuid())
   userId      String
   name        String
-  user        User          @relation(fields: [userId], refrences: [id])
-  avatarImages    AvatarImages[]
+  user        User          @relation(fields: [userId], references: [id])
+  avatarImages    AvatarImage[]
   avatarVideoReference    AvatarVideoReference[]
 }
 
@@ -35,7 +35,7 @@ model AvatarImage{
   avatarId    String
   type        AvatarImageType
   url         String
-  avatar      Avatar        @relation(fields: [avatarId], refrences: [id])
+  avatar      Avatar        @relation(fields: [avatarId], references: [id])
 }
 
 enum AvatarImageType{
@@ -53,7 +53,7 @@ model AvatarVideo {
   width       Int
   height      Int
   status      AvatarVideoStatus
-  user        User          @relation(fields: [userId], refrences: [id])
+  user        User          @relation(fields: [userId], references: [id])
   avatarVideoReference      AvatarVideoReference[]
 }
 
@@ -67,6 +67,6 @@ model AvatarVideoReference{
   id              String          @id           @default(uuid())
   avatarVideoId   String
   avatarId        String
-  avatar          Avatar          @relation(fields: [avatarId] , refrences: [id])
-  avatarVideo     AvatarVideo     @relation(fields: [avatarId] , refrences: [id])
+  avatar          Avatar          @relation(fields: [avatarId] , references: [id])
+  avatarVideo     AvatarVideo     @relation(fields: [avatarVideoId] , references: [id])
 }
